@@ -3,6 +3,7 @@ import { userReducer } from './reducers/userReducer'
 
 const initialState = {
   items: [],
+  sparkline: []
 }
 
 let store = createStore(userReducer, initialState)

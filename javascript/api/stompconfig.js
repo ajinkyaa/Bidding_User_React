@@ -15,16 +15,10 @@ export function fetchUsers(store) {
       var arrayIndex = dataName.indexOf(data.name)
       if( arrayIndex == -1) {
         dataName.push(data.name)
-    		store.dispatch({
-      		type: 'FETCH_DATA',
-          data
-    		})
+        dispatchAction('FETCH_DATA', data)
 	    }
       else {
-        store.dispatch({
-          type: 'UPDATE_DATA',
-          data
-        })
+        dispatchAction('UPDATE_DATA', data)
       }
     });
   }
@@ -32,4 +26,20 @@ export function fetchUsers(store) {
   client.connect({}, connectCallBack, function(error) {
     console.log('connection to stomp client failed')
   })
+
+  function dispatchAction(action, newData) {
+    return store.dispatch({
+            type: action,
+            data: {
+              name: newData.name,
+              bestBid: newData.bestBid,
+              bestAsk: newData.bestAsk,
+              openBid: newData.openBid,
+              openAsk: newData.openAsk,
+              lastChangeAsk: newData.lastChangeAsk,
+              lastChangeBid: newData.lastChangeBid
+            }
+          })
+  }
 }
+

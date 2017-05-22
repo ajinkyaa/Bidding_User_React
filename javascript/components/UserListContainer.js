@@ -8,7 +8,7 @@ export default class UserListContainer extends React.Component {
   constructor() {
     super()
     this.state = {
-      items: []   
+      items: []
     }
   }
 
@@ -24,7 +24,7 @@ export default class UserListContainer extends React.Component {
 
   getList() {
     var items = []
-    this.state.items.forEach((item, index) => {
+    this.state.items.forEach ((item, index) => {
       items.push( <UserListRow key={index} index={index} message={item} /> )
     });
     return items
@@ -32,7 +32,6 @@ export default class UserListContainer extends React.Component {
 
   render() {
     return (
-      
       <table className="table">
       	<thead>
           <tr>
@@ -42,11 +41,11 @@ export default class UserListContainer extends React.Component {
       			<th>Open Bid</th>
       			<th>Open Ask</th>
       			<th>Best ask last changed</th>
-      			<th>Midprice</th>
+            <th>Mid Price</th>
         	</tr>
         </thead>
       	<tbody>
-          {this.getList()}
+          {this.getList()}    
         </tbody>
       </table>
     );

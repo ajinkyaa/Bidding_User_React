@@ -29,18 +29,7 @@ module.exports = function(entries, output) {
           exclude: "/node_modules/", 
           query: {
             cacheDirectory: true, 
-            presets: ['es2015', 'react', 'stage-0'],
-            plugins: ["transform-decorators-legacy"]
-          }
-        },
-        { 
-          test: /\.jsx$/, 
-          loader: 'babel', 
-          exclude: "/node_modules/", 
-           query: {
-            cacheDirectory: true, 
-            presets: ['es2015', 'react', 'stage-0'],
-            plugins: ["transform-decorators-legacy"]
+            presets: ['es2015', 'react', 'stage-0']
           }
         }
       ]
