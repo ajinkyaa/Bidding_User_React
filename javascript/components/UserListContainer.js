@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "react"
+import ReactDOM from "react-dom"
 import UserListRow from './UserListRow'
 import store from '../store'
 import { fetchUsers } from '../api/stompconfig'
@@ -8,26 +8,34 @@ export default class UserListContainer extends React.Component {
   constructor() {
     super()
     this.state = {
-      items: []
+      userList: []
     }
   }
 
   componentWillMount() {
-    fetchUsers(store)
+    fetchUsers()
     store.subscribe(() => {
-      var state = store.getState();
+      let state = store.getState()
       this.setState({
-        items: state.items
+        userList: state.userList
       })
     })
   }
+  
+  // For sorting
+  // sortData(state) {
+  //   state.items.sort(function(a,b){
+  //     return b.data.datanew.bestBid - a.data.datanew.bestBid;
+  //   })
+  // }
 
   getList() {
-    var items = []
-    this.state.items.forEach ((item, index) => {
-      items.push( <UserListRow key={index} index={index} message={item} /> )
+    let user = []
+    this.state.userList.forEach((users, index) => {
+      console.log(users.arrSparkline)
+      user.push( <UserListRow key={index} index={index} message={users} /> )
     });
-    return items
+    return user
   }
 
   render() {
@@ -36,18 +44,21 @@ export default class UserListContainer extends React.Component {
       	<thead>
           <tr>
             <th>Name</th>
-      			<th>Current best bid price</th>
-      			<th>Current best ask price</th>
-      			<th>Open Bid</th>
-      			<th>Open Ask</th>
-      			<th>Best ask last changed</th>
+            <th>Current best bid price</th>
+            <th>Current best ask price</th>
+            <th>Open Bid</th>
+            <th>Open Ask</th>
+            <th>Best ask last changed</th>
             <th>Mid Price</th>
-        	</tr>
+          </tr>
         </thead>
-      	<tbody>
-          {this.getList()}    
+        <tbody>
+          {this.getList()}
         </tbody>
       </table>
     );
   }
 }
+
+
+// 
