@@ -8,7 +8,8 @@ export default class UserListContainer extends React.Component {
   constructor() {
     super()
     this.state = {
-      userList: []
+      userList: [],
+      isSort: true
     }
   }
 
@@ -16,6 +17,7 @@ export default class UserListContainer extends React.Component {
     fetchUsers()
     store.subscribe(() => {
       let state = store.getState()
+      // state.userList
       this.setState({
         userList: state.userList
       })
@@ -31,8 +33,7 @@ export default class UserListContainer extends React.Component {
 
   getList() {
     let user = []
-    this.state.userList.forEach((users, index) => {
-      console.log(users.arrSparkline)
+    this.state.userList.map((users, index) => {
       user.push( <UserListRow key={index} index={index} message={users} /> )
     });
     return user
